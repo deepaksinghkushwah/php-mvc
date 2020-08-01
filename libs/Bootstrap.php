@@ -20,6 +20,7 @@ class Bootstrap {
             return false;
         }
         $c = new $url[0];
+        
 
         if (isset($url[2])) {
             $slice = array_slice($url, 2);

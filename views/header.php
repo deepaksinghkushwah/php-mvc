@@ -50,6 +50,9 @@
                             </li>
                         <?php } ?>
                         <li class="nav-item">
+                            <a class="nav-link" href="<?= SITE_URL ?>article/index">Articles</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="<?= SITE_URL ?>help/index">Help</a>
                         </li>
 
