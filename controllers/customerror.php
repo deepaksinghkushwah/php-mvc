@@ -1,5 +1,5 @@
 <?php
-namespace controllers;
+
 class CustomError extends Controller {
     function __construct() {
         parent::__construct();                

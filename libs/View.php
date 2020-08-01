@@ -1,7 +1,8 @@
 <?php
 
 class View {
-    public $title = "";
+    
+    
     function __construct() {
         // do nothing
     }

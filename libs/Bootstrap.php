@@ -5,6 +5,7 @@ class Bootstrap {
     function __construct() {
         Session::init();
         $baseUrl = isset($_GET['url']) ? $_GET['url'] : 'index';
+        $baseUrl = filter_var($baseUrl, FILTER_SANITIZE_URL);
         $url = explode("/", rtrim($baseUrl, "/"));
         
         
@@ -12,8 +13,8 @@ class Bootstrap {
         if(file_exists($file)){
             require $file;
         } else {
-            //exit("here");
-            $c = new controllers\CustomError();
+            require 'controllers/customerror.php';
+            $c = new CustomError();
             $c->title = "Error";
             $c->index();
             return false;
