@@ -47,7 +47,8 @@ class Session {
      * @return bool
      */
     public static function isGuest(){
-        return self::get(KEY_LOGGED_IN) == true;
+        $loggedIn = self::get(KEY_LOGGED_IN);
+        return  $loggedIn == true;
     }
 
 }

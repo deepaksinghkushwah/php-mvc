@@ -59,8 +59,13 @@ class User extends Controller {
         $this->view->render("user/signup"); // pass true with comma for empty page
     }
 
-    public function dashboard() {       
+    public function dashboard() {      
         
+        if(!Session::isGuest()){
+            
+            header('location: '.SITE_URL.'user/login');
+            exit;
+        }
         $this->view->title = "User - Dashboard";
         $this->view->render("user/dashboard"); // pass true with comma for empty page
     }

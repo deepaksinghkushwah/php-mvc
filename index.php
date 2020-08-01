@@ -1,8 +1,7 @@
 <?php
-
-// use autoloader
 require "./config/params.php";
 
+// use autoloader
 function autoload($class) {
     $folders = ['libs', 'controllers', 'models','libs/Form/'];
     foreach($folders as $folder){
