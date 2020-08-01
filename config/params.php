@@ -9,7 +9,6 @@ define("DB_PASSWORD", "");
 define("DNS", DB_TYPE . ":dbname=" . DB_NAME . ";host=" . DB_HOST); //mysql:host=localhost;dbname=php-mvc
 define('SITE_URL', 'http://php-mvc.local/');
 define('SITE_ROOT', dirname(dirname(__FILE__)));
-define('LIBS', SITE_ROOT.'/libs/');
 
 // session related, do not change
 define("KEY_LOGGED_IN", "loggedIn");

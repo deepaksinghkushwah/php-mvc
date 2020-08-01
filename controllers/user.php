@@ -1,5 +1,4 @@
 <?php
-require "models/user_model.php";
 class User extends Controller {
 
     function __construct() {
@@ -8,7 +7,6 @@ class User extends Controller {
 
     public function index() {
         $this->view->title = "User - Index";
-        require "models/login_model.php";
         $model = new User_Model();
         $rows = $model->test();
 
@@ -47,7 +45,7 @@ class User extends Controller {
     public function signup() {
 
         if (isset($_POST['register'])) {
-            require "models/login_model.php";
+            
             $model = new User_Model();
             $username = RequestHelper::purify($_POST['username']);
             $password = RequestHelper::purify($_POST['password']);

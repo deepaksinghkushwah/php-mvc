@@ -4,7 +4,14 @@
 require "./config/params.php";
 
 function autoload($class) {
-    require LIBS . $class . ".php";
+    $folders = ['libs', 'controllers', 'models','libs/Form/'];
+    foreach($folders as $folder){
+        $path = SITE_ROOT.'/'.$folder.'/'.$class.".php";
+        if(file_exists($path)){
+            require $path;
+        }
+    }
+    
 }
 
 /*
