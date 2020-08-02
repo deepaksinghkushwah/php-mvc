@@ -4,7 +4,27 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
 /* 
-    Created on : 2 Aug, 2020, 11:40:17 AM
+    Created on : 31 Jul, 2020, 4:27:16 PM
     Author     : deepak
 */
 
+body {
+    background-color: #EEEEEE;
+    padding: 20px;
+}
+
+#header{
+    padding: 20px;
+    background: graytext;
+}
+
+#content{
+    background: #fff;
+    padding: 20px;
+    min-height: 300px;
+}
+
+#footer{
+    background: beige;
+    padding: 20px;
+}
