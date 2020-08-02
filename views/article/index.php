@@ -11,7 +11,7 @@
         foreach ($this->rows as $row) {
             ?>
             <tr>
-                <td><?= $row['title'] ?></td>
+                <td><a href="<?=SITE_URL.'article/detail/'.$row['url'];?>"><?= $row['title'] ?></a></td>
                 <td><?= $row['description'] ?></td>
             </tr>
             <?php

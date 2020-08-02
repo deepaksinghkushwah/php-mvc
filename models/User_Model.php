@@ -34,6 +34,7 @@ class User_Model extends Model {
                     Session::set(KEY_LOGGED_IN, true);
                     Session::set(KEY_USER_ID, $user->id);
                     Session::set(KEY_USER_NAME, $user->username);
+                    Session::set(KEY_ROLE_ID, $user->role_id); // 1 = admin, 0 = normal user
                     Session::addMessage("Logged in successfully", "success");
                     return true;
                 } else {

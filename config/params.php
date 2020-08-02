@@ -12,6 +12,6 @@ define('SITE_ROOT', dirname(dirname(__FILE__)));
 
 // session related, do not change
 define("KEY_LOGGED_IN", "loggedIn");
-define("KEY_IS_ADMIN", "isAdmin");
+define("KEY_ROLE_ID", "roleID");
 define("KEY_USER_ID", "userID");
 define("KEY_USER_NAME", "name");

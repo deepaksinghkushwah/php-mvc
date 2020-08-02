@@ -36,38 +36,20 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="<?= SITE_URL ?>index">Home <span class="sr-only">(current)</span></a>
                         </li>
-                        <?php if (Session::get("loggedIn") == true) { ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= SITE_URL ?>user/dashboard">Dashboard</a>
-                            </li>
 
-                        <?php } else { ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= SITE_URL ?>user/login">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="<?= SITE_URL ?>user/signup">Signup</a>
-                            </li>
-                        <?php } ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= SITE_URL ?>article/index">Articles</a>
+                            <a class="nav-link" href="<?= SITE_URL . 'pagemanager/index' ?>">Manage Pages</a>
+                        </li>
+                        
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= SITE_URL . 'usermanager/index' ?>">Manage Users</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?= SITE_URL ?>help/index">Help</a>
+                            <a class="nav-link" href="<?= SITE_URL . 'settingmanager/index' ?>">Manage Settings</a>
                         </li>
+                        
 
-                        <?php if (Session::get(KEY_ROLE_ID) == 1) { ?>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Admin Area</a>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="<?=SITE_URL.'pagemanager/index'?>">Manage Pages</a>
-                                    <a class="dropdown-item" href="<?=SITE_URL.'usermanager/index'?>">Manage Users</a>
-                                    <a class="dropdown-item" href="<?=SITE_URL.'settingmanager/index'?>">Manage Settings</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Separated link</a>
-                                </div>
-                            </li>
-                        <?php } ?>
 
 
                     </ul>
