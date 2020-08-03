@@ -1,5 +1,8 @@
 Simple php-mvc design
 -----------------------------------------------------------
+This is very simple system in php to make small sites. Suggesations are welcome. I learn this from folliowing youtube tutorial. 
+
+https://www.youtube.com/playlist?list=PL7A20112CF84B2229&feature=view_all
 
 
 To add css/js for specific action, in controller file add following sample lines and edit your settings
@@ -56,5 +59,13 @@ you can add much more template as you wish by creating new files similar to ment
 Admin Panel
 ------------------
 I have seprated admin panel using different controllers and different template 
+
+Users
+-----
+Admin user can access backend panel menu and backend for pages and user manager. 
+
+user/pass: admin/123456
+
+
 
 
