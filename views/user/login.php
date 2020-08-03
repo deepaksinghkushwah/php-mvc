@@ -3,10 +3,10 @@
         <form method="post" action="">
             <table class="table table-bordered">
                 <tr>
-                    <td><input type="text" name="username" placeholder="Username"></td>
+                    <td><input type="text" class="form-control" name="username" placeholder="Username"></td>
                 </tr>
                 <tr>
-                    <td><input type="password" name="password" placeholder="Password"></td>
+                    <td><input type="password" class="form-control" name="password" placeholder="Password"></td>
                 </tr>
                 <tr>
                     <td><input type="submit" name="login" value="Login" class="btn btn-primary"></td>
