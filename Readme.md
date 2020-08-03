@@ -30,16 +30,19 @@ Currencly there are 3 layouts "main", "admin", "home".
 To edit general page
 ----------------------
 footer-main.php
+
 header-main.php
 
 To edit home page
 ---------------------
 header-home.php
+
 footer-home.php
 
 To edit admin page
 ---------------------
 header-admin.php
+
 footer-admin.php
 
 
