@@ -5,6 +5,11 @@ This is very simple system in php to make small sites. Suggesations are welcome.
 https://www.youtube.com/playlist?list=PL7A20112CF84B2229&feature=view_all
 
 
+I didn't follow whole tutorial but made some own changes. If you are learning, you should check the whole tutorial.
+
+---------------------
+
+
 To add css/js for specific action, in controller file add following sample lines and edit your settings
 
 For css
