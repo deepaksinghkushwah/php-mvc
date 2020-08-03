@@ -98,9 +98,9 @@ class User_Model extends Model {
                 ->post("status")->validate("integer");
 
         if (count($form->_error) <= 0) {
-            $sql = "SELECT * FROM `user` WHERE username = :username AND email = :email AND id != :id";
+            $sql = "SELECT * FROM `user` WHERE username = :username AND id != :id";
             $stmt = $this->prepare($sql);
-            $stmt->execute([':username' => $form->fetch("username"), ":id" => $id, ":email" => $form->fetch("email")]);
+            $stmt->execute([':username' => $form->fetch("username"), ":id" => $id]);
             $user = $stmt->fetchObject();
             if (!$user) {
                 // no use found with same user name,update new details

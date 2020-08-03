@@ -21,7 +21,7 @@
         <tr>
             <td>Role</td>
             <td>
-                <select name="role_id">
+                <select class="form-control" name="role_id">
                     <?php
                     $model = new Role_Model();
                     $rows = $model->listAll();
@@ -40,7 +40,7 @@
             <td>Status</td>
             <td>
                 
-                <select name="status">
+                <select class="form-control" name="status">
                     <option <?php echo isset($this->formData) ? ($this->formData['status'] == 0 ? 'selected="selected"':'') : ''?> value="0">Inactive</option>
                     <option <?php echo isset($this->formData) ? ($this->formData['status'] == 1 ? 'selected="selected"':'') : ''?> value="1">Active</option>
                     <option <?php echo isset($this->formData) ? ($this->formData['status'] == 2 ? 'selected="selected"':'') : ''?> value="2">Deleted</option>
