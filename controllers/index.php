@@ -7,6 +7,7 @@ class Index extends Controller {
     
     public function index($args = false){
         $this->view->title = "Home";
+        $this->view->layout = "home";
         $this->view->render("index/index");    
     }
     
@@ -14,5 +15,10 @@ class Index extends Controller {
         $this->view->title = "Home - Other";
         $this->view->args = $args;
         $this->view->render("index/other");        
+    }
+    
+    public function about($args = false){
+        $this->view->title = "About Us";
+        $this->view->render("index/about");    
     }
 }

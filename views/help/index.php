@@ -1,5 +1,6 @@
 
-<?=$this->msg?>
+<h1><?=$this->msg?></h1>
+
 <hr/>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et saepe officium est sapientis desciscere a vita, cum sit beatissimus, si id oportune facere possit, quod est convenienter naturae. Omnes enim iucundum motum, quo sensus hilaretur. Ita similis erit ei finis boni, atque antea fuerat, neque idem tamen; Atque hoc loco similitudines eas, quibus illi uti solent, dissimillimas proferebas. Duo Reges: constructio interrete. Id autem eius modi est, ut additum ad virtutem auctoritatem videatur habiturum et expleturum cumulate vitam beatam, de quo omnis haec quaestio est. </p>
 

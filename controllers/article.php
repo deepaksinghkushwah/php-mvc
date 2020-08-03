@@ -21,6 +21,8 @@ class Article extends Controller{
         
         $this->view->article = $article;
         $this->view->title = $article['title'];
+        $this->view->keywords = $article['keywords'];
+        $this->view->description = $article['description'];
         $this->view->render("article/detail");
     }
 }

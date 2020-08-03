@@ -15,3 +15,4 @@ define("KEY_LOGGED_IN", "loggedIn");
 define("KEY_ROLE_ID", "roleID");
 define("KEY_USER_ID", "userID");
 define("KEY_USER_NAME", "name");
+define("CSRF_KEY","k8I8h%n89(k)mL;");

@@ -2,7 +2,7 @@
 
 class Session {
 
-    private static $flashMessage = [];
+    
 
     public static function set($key, $value) {
         $_SESSION[$key] = $value;
@@ -13,7 +13,7 @@ class Session {
     }
 
     public static function init() {
-        session_start();
+        @session_start();
     }
 
     public static function destroy() {
@@ -25,21 +25,24 @@ class Session {
      * @param string $msg Message
      * @param string $cat Category
      */
-    public static function addMessage($msg, $cat = "info") {
-        self::$flashMessage [$cat][] = $msg;
+    public static function addMessage($msg, $cat = "info") {        
+        $_SESSION['flashMessage'][$cat][] = $msg;
     }
 
-    public static function showFlashMessages() {
-        if (count(self::$flashMessage) > 0) {
-            foreach (self::$flashMessage as $cat => $msg) {
+    public static function showFlashMessages() {        
+        if (isset($_SESSION['flashMessage']) && count($_SESSION['flashMessage']) > 0) {            
+            foreach ($_SESSION['flashMessage'] as $cat => $msg) {
                 foreach ($msg as $m) {
                     echo "<div class='alert alert-" . $cat . "' role='alert'>
                         " . $m . "
                     </div>";
                 }
-            }
-        }
-        self::$flashMessage = [];
+            }            
+        }        
+    }
+    
+    public static function removeFlashMessages(){        
+        $_SESSION['flashMessage'] = [];
     }
     
     /**

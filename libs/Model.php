@@ -23,7 +23,7 @@ class Model extends PDO {
         foreach ($data as $key => $val) {
             $stat->bindValue(":$key", $val);
         }
-        $stat->execute();
+        return $stat->execute();
     }
 
     /**
@@ -45,7 +45,7 @@ class Model extends PDO {
         foreach ($data as $key => $val) {
             $stat->bindValue(":$key", $val);
         }
-        $stat->execute();
+        return $stat->execute();
     }
 
     /**

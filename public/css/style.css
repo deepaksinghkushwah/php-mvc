@@ -8,23 +8,10 @@ and open the template in the editor.
     Author     : deepak
 */
 
-body {
-    background-color: #EEEEEE;
-    padding: 20px;
+p {
+    text-align: justify;
 }
 
-#header{
-    padding: 20px;
-    background: gold;
-}
-
-#content{
-    background: #fff;
-    padding: 20px;
-    min-height: 300px;
-}
-
-#footer{
-    background: green;
-    padding: 20px;
+hr {
+    margin-bottom: 50px;
 }

@@ -1,5 +1,6 @@
 <h1>Articles</h1>
-<table class="table table-bordered">
+<hr>
+<table class="table table-striped table-light">
     <thead>
         <tr>
             <th>Title</th>

@@ -5,7 +5,8 @@ class SettingManager extends Controller {
     }
     
     public function index(){
+        $this->view->layout = "admin";
         $this->view->title = "Setting Manager";
-        $this->view->render("settingmanager/index",true, false);
+        $this->view->render("settingmanager/index");
     }
 }
