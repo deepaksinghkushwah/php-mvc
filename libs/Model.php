@@ -19,12 +19,17 @@ class Model extends PDO {
         ksort($data);
         $fieldNames = implode("`,`", array_keys($data));
         $fieldValues = ':' . implode(", :", array_keys($data));
-        $stat = $this->prepare("INSERT INTO $table (`$fieldNames`) values ($fieldValues)");
+        $stmt = $this->prepare("INSERT INTO $table (`$fieldNames`) values ($fieldValues)");
         foreach ($data as $key => $val) {
-            $stat->bindValue(":$key", $val);
+            $stmt->bindValue(":$key", $val);
         }
         //echo $stat->queryString;
-        return $stat->execute();
+        $res =  $stmt->execute();
+        if (!$res) {
+            echo $stmt->debugDumpParams().'<br>';            
+            exit;
+        }
+        return $res;
     }
 
     /**
@@ -42,11 +47,17 @@ class Model extends PDO {
         $fieldDetails = rtrim($fieldDetails, ",");
 
 
-        $stat = $this->prepare("UPDATE $table SET $fieldDetails WHERE $where");
+        $stmt = $this->prepare("UPDATE $table SET $fieldDetails WHERE $where");
         foreach ($data as $key => $val) {
-            $stat->bindValue(":$key", $val);
+            $stmt->bindValue(":$key", $val);
         }
-        return $stat->execute();
+        
+        $res =  $stmt->execute();
+        if (!$res) {
+            echo $stmt->debugDumpParams().'<br>';            
+            exit;
+        }
+        return $res;
     }
 
     /**

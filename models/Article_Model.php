@@ -41,7 +41,8 @@ class Article_Model extends Model {
                     }                    
                     return false;
                 } else {
-                    $url = strtolower(str_replace(" ", "-", $form->fetch("url")));
+                    $url = RequestHelper::purify(strtolower(str_replace(" ", "-", $form->fetch("url"))),['.','?','&','^']);
+                    
                     if ($id != NULL) {
                         // update
                         $res = $this->update("article", [
