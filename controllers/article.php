@@ -7,9 +7,10 @@ class Article extends Controller{
         parent::__construct();
     }
     
-    function index(){
+    function index($args = false){
         
         $rows = (new Article_Model)->listAll();
+        $this->view->args = $args;
         $this->view->rows = $rows;
         $this->view->title = "Articles";
         $this->view->render("article/index");

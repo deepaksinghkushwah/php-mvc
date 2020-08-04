@@ -63,7 +63,7 @@ class Model extends PDO {
         $stmt->execute();
         return $stmt->fetchAll($fetchMode);
     }
-    
+
     /**
      * 
      * @param string $table table name
@@ -71,8 +71,8 @@ class Model extends PDO {
      * @param int $limit limit records to delete
      * @return int Affected Rows
      */
-    public function delete($table, $where, $limit = 1){
-        return $this->exec("DELETE FROM $table WHERE $where LIMIT $limit");        
+    public function delete($table, $where, $limit = 1) {
+        return $this->exec("DELETE FROM $table WHERE $where LIMIT $limit");
     }
 
 }

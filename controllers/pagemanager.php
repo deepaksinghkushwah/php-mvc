@@ -7,9 +7,9 @@ class PageManager extends Controller {
         $this->view->layout = "admin"; // the default layout for whole controller
     }
 
-    public function index() {
+    public function index($args = false) {
         $this->view->title = "Page Manager";
-        
+        $this->view->args = $args;
         $model = new Article_Model();
         $this->view->rows = $model->listAll();
         $this->view->render("pagemanager/index");

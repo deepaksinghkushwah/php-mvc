@@ -1,25 +1,17 @@
 <?php
+require "../config/params.php";
+require "../libs/Model.php";
+require "../models/Article_Model.php";
 
-require "../libs/Form.php";
-if(isset($_REQUEST['run'])){
-    $form = new Form();
-    $form->post("name")->validate("minLength", 100)
-            ->post("age")->validate("integer")
-            ->post("gender");
-    
-    $a = $form->fetch();    
-    
-    
-    print_r($form->_error);
-    
-    
-    
-    
+
+for ($i = 10; $i < 100; $i++) {
+    $model = new Article_Model();
+    $content = file_get_contents('https://loripsum.net/api/10/short/headers');
+    $model->insert("article", [
+        'title' => "My article " . $i,
+        'description' => "My article " . $i,
+        'url' => "My article " . $i,
+        'content' => $content,
+        'category_id' => 2
+    ]);
 }
-?>
-<form method="post" action="?run">
-    <input type="text" name="name" placeholder="name">
-    <input type="text" name="age" placeholder="age">
-    <input type="text" name="gender" placeholder="gender">
-    <input type="submit" name="submit" value="submit">
-</form>

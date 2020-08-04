@@ -6,6 +6,24 @@
     <?php } ?>
     <table class="table table-bordered">
         <tr>
+            <td>Category</td>
+            <td>
+                <select class="form-control" name="category_id">
+                    <?php
+                    $model = new Article_Category_Model();
+                    $rows = $model->listAll();
+                    if ($rows) {
+                        foreach ($rows as $row) {
+                            ?>
+                            <option <?=isset($this->formData) ? ($this->formData['category_id'] == $row['id'] ? 'selected = "selected"' : '' ) : '';?> value="<?= $row['id'] ?>"><?= $row["title"] ?></option>
+                            <?php
+                        }
+                    }
+                    ?>
+                </select>
+            </td>
+        </tr>
+        <tr>
             <td width="20%">Title</td>
             <td width="80%"><input type="text" <?= isset($this->formData) ? 'value = "' . $this->formData['title'] . '"' : '' ?> required class="form-control" name="title" id="title"/></td>
         </tr>

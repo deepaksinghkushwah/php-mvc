@@ -1,19 +1,19 @@
 <?php
 
-class Article_Model extends Model {
+class Article_Category_Model extends Model {
 
-    public function listAll() {        
-        $rows = $this->select("SELECT * FROM article order by id DESC");
+    public function listAll() {
+        $rows = $this->select("SELECT * FROM article_category order by id DESC");
         return $rows;
     }
 
     public function get($url) {
-        $row = $this->select("SELECT * FROM article WHERE `url` = :url LIMIT 1", [':url' => $url]);
+        $row = $this->select("SELECT * FROM article_category WHERE `url` = :url LIMIT 1", [':url' => $url]);
         return $row;
     }
 
     public function getByID($id) {
-        $row = $this->select("SELECT * FROM article WHERE `id` = :id LIMIT 1", [':id' => $id]);
+        $row = $this->select("SELECT * FROM article_category WHERE `id` = :id LIMIT 1", [':id' => $id]);
         return $row;
     }
 
@@ -32,13 +32,12 @@ class Article_Model extends Model {
                         ->post("content")->validate("minLength", 30)
                         ->post("description")->validate("minLength", 10)
                         ->post("url")->validate("minLength", 1)
-                        ->post("keywords")->validate("minLength", 1)
-                        ->post("category_id")->validate("integer");
+                        ->post("keywords")->validate("minLength", 1);
 
                 if (!empty($form->_error)) {
                     foreach ($form->_error as $cat => $msg) {
                         Session::addMessage($cat . ' - ' . $msg, 'danger');
-                    }                    
+                    }
                     return false;
                 } else {
                     $url = strtolower(str_replace(" ", "-", $form->fetch("url")));
@@ -54,7 +53,7 @@ class Article_Model extends Model {
                                 ], "id = {$id}");
                     } else {
 
-                        // insert                        
+                        // insert
                         $res = $this->insert("article", [
                             'title' => $form->fetch("title"),
                             'content' => $form->fetch("content"),
