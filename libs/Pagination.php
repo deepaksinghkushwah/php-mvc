@@ -14,6 +14,12 @@ class Pagination {
     public $rows;
     private $pageUrl;
 
+    /**
+     * Return rows from database according to limit,offset settings
+     * @param string $sql
+     * @param string $pageUrl
+     * @param int $page
+     */
     public function __construct($sql, $pageUrl, $page) {
         $model = new Model();
         $this->page = $page;
@@ -38,6 +44,9 @@ class Pagination {
         return rtrim($str, "&");
     }
 
+    /**
+     * Display page links for pagination
+     */
     public function displayPageLinks() {
         //echo $this->page + 4 .' = '.$this->totalPages."<br>";
         $k = (($this->page + 4 > $this->totalPages) ? $this->totalPages - 4 : (($this->page - 4 < 1) ? 5 : $this->page));
@@ -51,20 +60,21 @@ class Pagination {
                     <li class="page-item"><a class="page-link" href='<?= $this->pageUrl . ($this->page - 1) . $this->getQstr() ?>'> Previous </a></li>
                 <?php } ?>
 
-                <?php for ($p = -4; $p <= 4; $p++) {
+                <?php
+                for ($p = -4; $p <= 4; $p++) {
                     if (($k + $p) <= 0)
                         continue;
                     ?>
 
                     <li class="page-item <?= $this->page == ($k + $p) ? 'active' : ''; ?>"><a class="page-link" href="<?= $this->pageUrl . ($k + $p) . $this->getQstr() ?>"><?= ($k + $p); ?></a></li>
-        <?php } ?>
+                <?php } ?>
 
 
 
-                    <?php if ($this->page < $this->totalPages) { ?>
+                <?php if ($this->page < $this->totalPages) { ?>
                     <li class="page-item"><a class="page-link" href='<?= $this->pageUrl . ($this->page + 1) . $this->getQstr() ?>'> Next </a></li>
                     <li class="page-item"><a class="page-link" href='<?= $this->pageUrl . $this->totalPages . $this->getQstr() ?>'> Last </a></li>
-        <?php } ?>
+                    <?php } ?>
             </ul> 
         </nav>
         <?php
