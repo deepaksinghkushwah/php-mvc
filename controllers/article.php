@@ -18,8 +18,7 @@ class Article extends Controller{
     
     public function detail($args){
         $model = new Article_Model();
-        $article = $model->get($args[0])[0];// $args[0] hold the article id
-        
+        $article = $model->get($args[0]);// $args[0] hold the article id
         $this->view->article = $article;
         $this->view->title = $article['title'];
         $this->view->keywords = $article['keywords'];

@@ -8,7 +8,7 @@ class Article_Model extends Model {
     }
 
     public function get($url) {
-        $row = $this->select("SELECT * FROM article WHERE `url` = :url LIMIT 1", [':url' => $url]);
+        $row = $this->selectSingle("SELECT * FROM article WHERE `url` = :url", [':url' => $url]);
         return $row;
     }
 

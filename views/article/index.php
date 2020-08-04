@@ -15,8 +15,8 @@ $pagination = new Pagination($sql, SITE_URL . 'article/index/', $page);
 
     <form method="get" action="<?=SITE_URL . 'article/index'?>">
         <div class="row">
-            <div class="col-3"><input type="text" name="q" class="form-control"></div>
-            <div class="col-3"><input type="submit" value="Search" class="btn btn-primary btn-sm"></div>
+            <div class="col-8"><input type="text" name="q" class="form-control form-control-sm"></div>
+            <div class="col-4"><input type="submit" value="Search" class="btn btn-primary btn-sm"> <a href="<?=SITE_URL.'article/index'?>" class="btn-sm btn btn-danger">Reset</a></div>
         </div>
 
     </form>

@@ -23,6 +23,7 @@ class Model extends PDO {
         foreach ($data as $key => $val) {
             $stat->bindValue(":$key", $val);
         }
+        //echo $stat->queryString;
         return $stat->execute();
     }
 
@@ -59,9 +60,24 @@ class Model extends PDO {
         $stmt = $this->prepare($sql);
         foreach ($array as $key => $value) {
             $stmt->bindValue("$key", $value);
-        }        
+        }
         $stmt->execute();
         return $stmt->fetchAll($fetchMode);
+    }
+
+    public function selectSingle($sql, $array = [], $fetchMode = PDO::FETCH_ASSOC) {
+        $stmt = $this->prepare($sql);
+        foreach ($array as $key => $value) {
+            $stmt->bindValue("$key", $value);
+        }
+        
+
+        $res =  $stmt->execute();
+        if (!$res) {
+            echo $stmt->debugDumpParams().'<br>';            
+            exit;
+        }
+        return $stmt->fetch($fetchMode);
     }
 
     /**
