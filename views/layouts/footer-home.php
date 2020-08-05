@@ -59,7 +59,8 @@
                         <a href="<?=SITE_URL?>" target="_blank">
                             <span class="socicon-behance socicon mbr-iconfont mbr-iconfont-social"></span>
                         </a>
-                    </div></div>
+                    </div>
+                </div>
             </div>
             <div class="row row-copirayt">
                 <p class="mbr-text mb-0 mbr-fonts-style mbr-white align-center display-7">
