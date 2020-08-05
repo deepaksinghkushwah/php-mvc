@@ -1,7 +1,8 @@
 <?php
 class SettingManager extends Controller {
     public function __construct() {
-        parent::__construct();        
+        parent::__construct();      
+        Session::checkAdminUsersOnly();
     }
     
     public function index(){

@@ -9,7 +9,7 @@ class Help extends Controller {
         $this->view->title = "Help";
         $model = new Help_Model();
         
-        $this->view->msg = "This is sample msg<br>";
+        $this->view->msg = "Help/FAQ";
         $this->view->render("help/index");
     }
 }

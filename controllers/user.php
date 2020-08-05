@@ -1,4 +1,5 @@
 <?php
+
 class User extends Controller {
 
     function __construct() {
@@ -20,7 +21,7 @@ class User extends Controller {
         $this->view->css[] = SITE_URL . "public/css/style.css";
         $this->view->js[] = ['pos' => 'head', 'src' => 'https://cdn.jsdelivr.net/npm/vue@2.6.11'];
 
-        if (isset($_POST['login'])) {            
+        if (isset($_POST['login'])) {
             $model = new User_Model();
             $username = RequestHelper::purify($_POST['username']);
             $password = RequestHelper::purify($_POST['password']);
@@ -30,7 +31,7 @@ class User extends Controller {
             }
         }
 
-        
+
         $model = new User_Model();
         $model->test();
         $this->view->render("user/login");
@@ -45,7 +46,7 @@ class User extends Controller {
     public function signup() {
 
         if (isset($_POST['register'])) {
-            
+
             $model = new User_Model();
             $username = RequestHelper::purify($_POST['username']);
             $password = RequestHelper::purify($_POST['password']);
@@ -59,15 +60,41 @@ class User extends Controller {
         $this->view->render("user/signup"); // pass true with comma for empty page
     }
 
-    public function dashboard() {      
-        
-        if(!Session::isGuest()){
-            
-            header('location: '.SITE_URL.'user/login');
-            exit;
-        }
+    public function dashboard() {
+
+        Session::checkAuthUsersOnly();
         $this->view->title = "User - Dashboard";
         $this->view->render("user/dashboard"); // pass true with comma for empty page
+    }
+
+    /**
+     * Change password for logged in user
+     */
+    public function changePassword() {
+        Session::checkAuthUsersOnly();
+        
+        if(isset($_POST['changePassword'])){
+            $model = new User_Model();
+            if($model->changePassword()){
+                Session::addMessage("Password change successfully", "success");
+                header("location: ".SITE_URL.'user/change-password');
+                exit;
+            } else {
+                Session::addMessage("Error at changing password", "danger");
+            }
+        }
+        
+        $this->view->title = "Change Password";
+        $this->view->render("user/change-password");
+    }
+
+    /**
+     * Display/edit logged in user profile
+     */
+    public function profile() {
+        Session::checkAuthUsersOnly();
+        $this->view->title = "Profile";
+        $this->view->render("user/profile");
     }
 
 }

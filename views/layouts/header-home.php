@@ -7,11 +7,11 @@
         <meta name="generator" content="Mobirise v4.12.4, mobirise.com">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
         <link rel="shortcut icon" href="<?= SITE_URL . 'public/' ?>assets/images/logo2.png" type="image/x-icon">
-        <meta name="description" content="<?=!empty($this->description) ? $this->description : $this->title;?>">
-        <meta name="keywords" content="<?=!empty($this->keywords) ? $this->keywords : $this->title;?>">
+        <meta name="description" content="<?= !empty($this->description) ? $this->description : $this->title; ?>">
+        <meta name="keywords" content="<?= !empty($this->keywords) ? $this->keywords : $this->title; ?>">
 
 
-        <title><?=$this->title?></title>
+        <title><?= $this->title ?></title>
         <link rel="stylesheet" href="<?= SITE_URL . 'public/' ?>assets/web/assets/mobirise-icons/mobirise-icons.css">
         <link rel="stylesheet" href="<?= SITE_URL . 'public/' ?>assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="<?= SITE_URL . 'public/' ?>assets/bootstrap/css/bootstrap-grid.min.css">
@@ -48,11 +48,8 @@
     </head>
     <body>
         <section class="menu cid-s6zQp2Vkg2" once="menu" id="menu1-4">
-
-
-
-            <?php require 'nav.php';?>
+            <?php require 'nav.php'; ?>
         </section>
 
-                 
-                <?php Session::showFlashMessages(); ?>
+
+        <?php Session::showFlashMessages(); ?>    

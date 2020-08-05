@@ -2,8 +2,6 @@
 
 class Session {
 
-    
-
     public static function set($key, $value) {
         $_SESSION[$key] = $value;
     }
@@ -25,33 +23,55 @@ class Session {
      * @param string $msg Message
      * @param string $cat Category
      */
-    public static function addMessage($msg, $cat = "info") {        
+    public static function addMessage($msg, $cat = "info") {
         $_SESSION['flashMessage'][$cat][] = $msg;
     }
 
-    public static function showFlashMessages() {        
-        if (isset($_SESSION['flashMessage']) && count($_SESSION['flashMessage']) > 0) {            
+    public static function showFlashMessages() {
+        if (isset($_SESSION['flashMessage']) && count($_SESSION['flashMessage']) > 0) {
             foreach ($_SESSION['flashMessage'] as $cat => $msg) {
                 foreach ($msg as $m) {
                     echo "<div class='alert alert-" . $cat . "' role='alert'>
                         " . $m . "
                     </div>";
                 }
-            }            
-        }        
+            }
+        }
     }
-    
-    public static function removeFlashMessages(){        
+
+    public static function removeFlashMessages() {
         $_SESSION['flashMessage'] = [];
     }
-    
+
     /**
      * Check if user is guest or logged in 
      * @return bool
      */
-    public static function isGuest(){
+    public static function isGuest() {
         $loggedIn = self::get(KEY_LOGGED_IN);
-        return  $loggedIn == true;
+        return $loggedIn == true;
+    }
+
+    public static function checkAuthUsersOnly() {
+        if (!self::isGuest()) {
+            self::addMessage("You are not authorized to perform this action");
+            header('location: ' . SITE_URL . 'user/login');
+            exit;
+        }
+    }
+
+    public static function checkAdminUsersOnly() {
+        if (self::get(KEY_LOGGED_IN) == true) {
+            if (self::get(KEY_ROLE_ID) != 1) {
+                self::addMessage("You are not authorized to perform this action");
+                header('location: ' . SITE_URL . 'user/dashboard');
+                exit;
+            } 
+        } else {            
+            self::addMessage("You are not authorized to perform this action");
+            header('location: ' . SITE_URL . 'user/login');
+            exit;
+        }
     }
 
 }

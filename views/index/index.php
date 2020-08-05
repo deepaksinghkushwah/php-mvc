@@ -8,13 +8,13 @@
         <div class="row justify-content-md-center">
             <div class="col-md-10 mt-5 align-center">
                 <h1 class="mbr-section-title mbr-bold pb-3 mbr-fonts-style display-1">
-                    FULL WIDTH INTRO
+                    HOME PAGE DEMO
                 </h1>
                 
                 <p class="mbr-text pb-3 mbr-fonts-style display-5">
-                    Full width intro with adjustable height, background image and a color overlay. Click any text to edit or style it.
+                    You can modify this page from <?=__FILE__?> or modify this template from "./views/layouts/header-home.php" + "./views/layouts/footer-home.php".
                 </p>
-                <div class="mbr-section-btn"><a class="btn btn-md btn-black-outline display-4" href="https://mobirise.co">LEARN MORE</a>
+                <div class="mbr-section-btn"><a class="btn btn-md btn-black-outline display-4" href="<?=SITE_URL?>">LEARN MORE</a>
                 </div>
             </div>
         </div>

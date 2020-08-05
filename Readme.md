@@ -72,5 +72,11 @@ Admin user can access backend panel menu and backend for pages and user manager.
 user/pass: admin/123456
 
 
+URL's
+--------------------
+You can create url like "user/change-passowrd" by creating function with camelcase string "changePassword".
+
+Every hypen (-) will be be replaced with empty string and it next char will be be capitalize.
+
 
 

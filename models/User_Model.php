@@ -59,34 +59,38 @@ class User_Model extends Model {
     }
 
     public function register($username, $password, $email, $role = 2) {
-        if (!empty($username) && !empty($password)) {
-            $hashPassword = PasswordHelper::generate($password);
-            $sql = "SELECT * FROM `user` WHERE username = :username";
-            $stmt = $this->prepare($sql);
-            $stmt->execute([':username' => $username]);
-            $user = $stmt->fetchObject();
-            if (!$user) {
-                // register here
-                $sql = "INSERT INTO `user` SET `username` = :username, `password` = :password, `email` = :email, `role_id` = :role, `status` = :status";
-                $stmt = $this->prepare($sql);
-                $res = $stmt->execute([':username' => $username, ':password' => $hashPassword, ':email' => $email, ':role' => $role, ':status' => 1]);
-                if ($res) {
-                    // user registered
-                    Session::addMessage("User registered", "success");
-                    return true;
+        if (!empty($_REQUEST['csrf_token'])) {
+            if (Form::checkToken($_REQUEST['csrf_token'], 'registerForm')) {
+                if (!empty($username) && !empty($password)) {
+                    $hashPassword = PasswordHelper::generate($password);
+                    $sql = "SELECT * FROM `user` WHERE username = :username";
+                    $stmt = $this->prepare($sql);
+                    $stmt->execute([':username' => $username]);
+                    $user = $stmt->fetchObject();
+                    if (!$user) {
+                        // register here
+                        $sql = "INSERT INTO `user` SET `username` = :username, `password` = :password, `email` = :email, `role_id` = :role, `status` = :status";
+                        $stmt = $this->prepare($sql);
+                        $res = $stmt->execute([':username' => $username, ':password' => $hashPassword, ':email' => $email, ':role' => $role, ':status' => 1]);
+                        if ($res) {
+                            // user registered
+                            Session::addMessage("User registered", "success");
+                            return true;
+                        } else {
+                            //exit($stmt->queryString);
+                            Session::addMessage("Error at user registration", "danger");
+                            return false;
+                        }
+                    } else {
+                        // return error
+                        Session::addMessage("Username already registered, please choose another", "danger");
+                        return false;
+                    }
                 } else {
-                    //exit($stmt->queryString);
-                    Session::addMessage("Error at user registration", "danger");
+                    Session::addMessage("All fields are required", "warning");
                     return false;
                 }
-            } else {
-                // return error
-                Session::addMessage("Username already registered, please choose another", "danger");
-                return false;
             }
-        } else {
-            Session::addMessage("All fields are required", "warning");
-            return false;
         }
     }
 
@@ -120,6 +124,36 @@ class User_Model extends Model {
                 Session::addMessage("Username or email alredy used", "warning");
                 return false;
             }
+        }
+    }
+
+    public function changePassword() {
+        $form = new Form();
+        $form->post('password')->validate("minLength", 4)
+                ->post('confirm_password')->validate("minLength", 4);
+        
+        if (!empty($_REQUEST['csrf_token'])) {
+            if (Form::checkToken($_REQUEST['csrf_token'], 'changePasswordForm')) {
+                $password = $form->fetch("password");
+                $cfmPassword = $form->fetch("confirm_password");
+
+                if ($password === $cfmPassword) {
+                    $hashPassword = PasswordHelper::generate($password);
+                    $res = $this->update("user", [
+                        'password' => $hashPassword,
+                            ], "id = " . Session::get(KEY_USER_ID));
+                    return $res;
+                } else {
+                    Session::addMessage("Password and confirm password not matched", "danger");
+                    return false;
+                }
+            } else {
+                Session::addMessage("Bad form submission", "danger");
+                return false;
+            }
+        } else {
+            Session::addMessage("Bad form submission", "danger");
+            return false;
         }
     }
 

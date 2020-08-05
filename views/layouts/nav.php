@@ -52,6 +52,17 @@
                         <li class="nav-item">
                             <a class="nav-link link text-white display-4" href="<?= SITE_URL ?>help/index">Help</a>
                         </li>
+                        
+                        <?php if (Session::get(KEY_LOGGED_IN)) { ?>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link link text-white dropdown-toggle display-4" data-toggle="dropdown-submenu" href="#" role="button" aria-haspopup="true" aria-expanded="false">Members Area</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item link text-white" href="<?= SITE_URL . 'user/change-password' ?>">Change Password</a>
+                                    <a class="dropdown-item link text-white" href="<?= SITE_URL . 'user/profile' ?>">Manage Profile</a>                                    
+                                    
+                                </div>
+                            </li>
+                        <?php } ?>
 
                         <?php if (Session::get(KEY_ROLE_ID) == 1) { ?>
                             <li class="nav-item dropdown">
