@@ -75,6 +75,12 @@ class User_Model extends Model {
                         if ($res) {
                             // user registered
                             Session::addMessage("User registered", "success");
+
+                            // send email
+                            $subject = "You are registered on ".SITE_URL;
+                            $message = "You are registered on ".SITE_URL."<br>Username: $username<br>Password: $password";
+                            MailHelper::sendEmail([$email], $subject, $message);
+                            
                             return true;
                         } else {
                             //exit($stmt->queryString);

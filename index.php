@@ -1,5 +1,6 @@
 <?php
 require "./config/params.php";
+require "./vendor/autoload.php";
 
 // use autoloader
 function autoload($class) {
