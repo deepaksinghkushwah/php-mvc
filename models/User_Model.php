@@ -163,4 +163,51 @@ class User_Model extends Model {
         }
     }
 
+    public function forgotPassword(){
+        $form = new Form();
+        $form->post('email')->validate("email")
+            ->post('recaptcha_response');
+        
+        if (!empty($_REQUEST['csrf_token'])) {
+            if (Form::checkToken($_REQUEST['csrf_token'], 'forgotPasswordForm')) {
+                
+                // recaptcha validation
+                if(!RequestHelper::checkRecaptcha($form->fetch("recaptcha_response"))){
+                    Session::addMessage("Recaptcha validation failed", "danger");
+                    return false;
+                }
+                
+                $email = $form->fetch("email");
+                $row = $this->selectSingle("SELECT * FROM `user` WHERE email = :email",[':email' => $email]);
+                if($row){
+                    
+                    $password =  PasswordHelper::generateRandomPassword();
+                    $passwordHash = PasswordHelper::generate($password);
+
+                    $this->update('user',[
+                        'password' => $passwordHash,
+                    ],"id = ".$row['id']);
+                    
+                    $message = "Hello ".$row['username'].",<br>You new password is as below.<br><strong>Password:</strong> ".$password;
+                    
+                    MailHelper::sendEmail([$row['email']], "New password for your account", $message);
+                    
+                    Session::addMessage("New password send to your registered email id, please check.", "success");
+
+                    return true;
+                } else {
+                    Session::addMessage("Email not registered here.", "danger");
+                    return false;    
+                }
+                
+            } else {
+                Session::addMessage("Bad form submission", "danger");
+                return false;
+            }
+        } else {
+            Session::addMessage("Bad form submission", "danger");
+            return false;
+        }
+    }
+
 }

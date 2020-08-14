@@ -33,4 +33,8 @@ define("MAILER_PASSWORD","123456");
 define("MAILER_ENCTYPTION","none");//PHPMailer::ENCRYPTION_STARTTLS
 define("MAILER_PORT","25"); // 587 for TLS
 
+// Recaptcha v3
+define("RECAPTCHA_SITE_KEY","6Ld4qr4ZAAAAAPF2iiLOn8_XBCSVyptL9S3y9kHB");
+define("RECAPTCHA_SECRET_KEY","6Ld4qr4ZAAAAANCGN9ze6EbKQSR_hqjfUrH0ARP0");
+define("RECAPTCHA_VERIFY_URL",'https://www.google.com/recaptcha/api/siteverify');
 

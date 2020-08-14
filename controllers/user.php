@@ -89,6 +89,23 @@ class User extends Controller {
     }
 
     /**
+     * Change password for logged in user
+     */
+    public function forgotPassword() {        
+        if(isset($_POST['forgotPassword'])){
+            $model = new User_Model();
+            if($model->forgotPassword()){                
+                header("location: ".SITE_URL.'user/login');
+                exit;
+            }
+        }
+        $this->view->js[] = ['pos' => 'head', 'src' => "https://www.google.com/recaptcha/api.js?render=".RECAPTCHA_SITE_KEY];
+        $this->view->js[] = ['pos' => 'head', 'src' => SITE_URL.'public/js/recaptcha.js'];
+        $this->view->title = "Forgot Password";
+        $this->view->render("user/forgot-password");
+    }
+
+    /**
      * Display/edit logged in user profile
      */
     public function profile() {
